@@ -1,0 +1,21 @@
+version: "3"
+name: axahk_undrw_ai_db 
+services:
+  postgres:
+    image: ankane/pgvector:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres/vector_extension.sql:/docker-entrypoint-initdb.d/0-vector_extension.sql
+
+    environment:
+      - POSTGRES_USER=<please_input>
+      - POSTGRES_PASSWORD=<please_input>
+      - POSTGRES_DB=<please_input>
+      - POSTGRES_LOGGING_COLLECTOR=on
+      - POSTGRES_LOG_DESTINATION=stderr
+      - POSTGRES_LOG_STATEMENT=all
+      - POSTGRES_LOG_MIN_DURATION_STATEMENT=0
+volumes:
+  pgdata:
