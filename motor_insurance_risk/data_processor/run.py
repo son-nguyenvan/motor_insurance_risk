@@ -6,7 +6,8 @@ import numpy as np
 
 from motor_insurance_risk.data_processor.processor import DataProcessor
 from motor_insurance_risk.database.connection import DatabaseConnection
-from motor_insurance_risk.utils import logger
+from motor_insurance_risk.embeddings.utils import calculate_total_embeddings_cost
+from motor_insurance_risk.utils.logger import logger
 
 def process_csv_to_embeddings(input_file, output_file):
     """
@@ -21,6 +22,9 @@ def process_csv_to_embeddings(input_file, output_file):
     processor = DataProcessor()
     
     df = pd.read_csv(input_file)
+
+    total_cost = calculate_total_embeddings_cost(df)
+    logger.info(f"Total cost for all the content transformed into embeddings = $ {total_cost}")
     
     processed_df = processor.process_dataframe(df)
     

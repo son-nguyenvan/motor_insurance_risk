@@ -3,7 +3,7 @@ from psycopg2.extras import execute_values
 from pgvector.psycopg2 import register_vector
 
 from motor_insurance_risk.config import DB_CONNECTION_STRING, MOTOR_EMBEDDINGS_TABLE
-from motor_insurance_risk.utils import logger
+from motor_insurance_risk.utils.logger import logger
 
 class DatabaseConnection:
     def __init__(self):
